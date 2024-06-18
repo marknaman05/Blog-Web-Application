@@ -1,0 +1,42 @@
+<!-- 
+    Write code template for Blog Home page.
+    Write code template to display the Blog Posts after submitting the form.
+
+    Add header and footer partials to this file.
+-->
+
+<%- include("partials/header.ejs") %>
+
+
+  <h1>Blog Home Page</h1>
+
+  <p>Lorem ipsum dolor sit amet, et proin, justo mus. Porta suspendisse turpis netus sagittis tortor at, vitae aliquet
+    pharetra cras velit, id gravida, neque nulla lorem, posuere hac. Ultricies eget lacus vehicula, in ante aliquam
+    et,facilisis tempor duis orci. Sed molestie sem in duis eu id, nisl id ultricies metus blandit eget praesent, pede
+    tempornullam, vitae arcu tortor suspendisse nibh risus. Nulla id suscipit reiciendis nulla erat. Porta enim aute
+    luctus,ducimus sodales dolor.
+  </p>
+  <form action="/submit" method="post">
+    <input name="blogTitle" type="text" class="feedback-input" placeholder="Blog Title" />
+    <textarea name="blogText" class="feedback-input" placeholder="Write here something about today..." ></textarea>
+
+    <input type="submit" value="SUBMIT" />
+  </form>
+
+  <% if(locals.data) {  %>
+    <h2>Blog Post</h2>
+    <ul>
+      <% for( let index = 1; index <= data.size; index++ ) { %>
+        <li class="feedback-input">
+            <h3>
+              <span class="bTitle"><%= data.get(index).bTitle %></span>
+              <a href="/edit" class="edit-btn" data-index="<%= index %>"><i class="fas fa-edit"></i></a>
+              <a href="/delete" class="delete-btn" data-index="<%= index %>"><i class="fas fa-trash"></i></a>
+            </h3>
+            <p class="bText"><%= data.get(index).bText %></p>
+          </li>
+      <% } %>
+  <% } %>
+    
+
+  <%- include("partials/footer.ejs") %>
